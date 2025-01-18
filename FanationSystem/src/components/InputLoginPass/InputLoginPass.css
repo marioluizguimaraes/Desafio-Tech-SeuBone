@@ -1,7 +1,7 @@
-@import url(../DefaultStyle.css);
+@import url(../Global.css);
 
 .inputpassword{
-    margin-top: 16px;
+    margin-top: 20px;
     display: flex;
     flex-direction: column;
 

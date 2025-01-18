@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import React from 'react';
-import './InputPass.css';
+import './InputLoginPass.css';
 
 const InputPass = () => {
     // Hook useState
     const [passwordValue, setPasworValue] = useState('');
     
     // Função para atualizar o valor da passwordValue
-    const handleInputChange = (event) => {
+    const handlePassChange = (event) => {
         setPasworValue(event.target.value);
     };
 
@@ -33,7 +33,7 @@ const InputPass = () => {
                 type="password" 
                 name="senha" 
                 value={passwordValue}
-                onChange={handleInputChange}
+                onChange={handlePassChange}
                 id="inputpass" 
                 placeholder='Digite sua senha'
             />

@@ -1,0 +1,11 @@
+@import url(../Global.css);
+
+footer{
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+}
+footer>p{
+    color: var(--gray1);
+    font-weight: 700;
+}

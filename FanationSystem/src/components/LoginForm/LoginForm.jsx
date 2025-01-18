@@ -1,6 +1,6 @@
 import React from 'react'
 import LogoFanation from '../../assets/LogoFanation.png'
-import InputPass from '../InputPass/InputPass'
+import InputLoginPass from '../InputLoginPass/InputLoginPass'
 import './LoginForm.css'
 
 const LoginForm = () => {
@@ -9,7 +9,7 @@ const LoginForm = () => {
             <img src={LogoFanation} alt="logotipo fanation"/>
             <h2>Bem-vindo ao Fanation</h2>
             <p>Acesse a sua conta para iniciar</p>  
-            <InputPass/>
+            <InputLoginPass/>
         </div>
     )
 }
