@@ -3,7 +3,7 @@ import './LoginForm.css'
 import LogoFanation from '../../assets/LogoFanation.png'
 import InputPass from '../InputPass/InputPass'
 
-function LoginForm(){
+const LoginForm = () => {
     return(
         <div className="login">
             <img src={LogoFanation} alt="logotipo fanation"/>
