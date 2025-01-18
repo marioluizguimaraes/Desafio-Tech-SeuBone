@@ -14,16 +14,20 @@ const InputPass = () => {
     // Função para verificar o valor da passwordValue
     const handleVerification = () => {
         console.log(passwordValue);
-        if (passwordValue.trim() !== ''){
-            console.log('Senha valida')
+        if (passwordValue.trim() === '') {
+            alert('Senha inválida');
+            return;
         }
-        else{
-            console.log('Senha invalida')
+
+        try {
+            
+        } catch (error) {
+            
         }
     };
     
     return (
-        <form className='inputpassword'> 
+        <form onSubmit={handleVerification} className='inputpassword'> 
             <label htmlFor="inputpass">Inserir senha</label>
             <input 
                 type="password" 
@@ -33,14 +37,7 @@ const InputPass = () => {
                 id="inputpass" 
                 placeholder='Digite sua senha'
             />
-            <button 
-                onClick={(event) => {
-                    event.preventDefault(); 
-                    handleVerification()
-                    }
-                }>
-                Acessar
-            </button>
+            <button type='submit'>Acessar</button>
         </form>        
     );
 };
