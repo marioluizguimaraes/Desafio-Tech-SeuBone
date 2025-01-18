@@ -1,3 +1,4 @@
+import React from 'react'
 import './InputPass.css'
 
 function InputPass(){
