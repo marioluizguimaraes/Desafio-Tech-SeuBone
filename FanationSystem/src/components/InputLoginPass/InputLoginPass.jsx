@@ -32,9 +32,9 @@ const InputPass = () => {
             <input 
                 type="password" 
                 name="senha" 
+                id="inputpass" 
                 value={passwordValue}
                 onChange={handlePassChange}
-                id="inputpass" 
                 placeholder='Digite sua senha'
             />
             <button type='submit'>Acessar</button>
