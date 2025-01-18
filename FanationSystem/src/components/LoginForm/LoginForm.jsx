@@ -1,7 +1,7 @@
 import React from 'react'
-import './LoginForm.css'
 import LogoFanation from '../../assets/LogoFanation.png'
 import InputPass from '../InputPass/InputPass'
+import './LoginForm.css'
 
 const LoginForm = () => {
     return(
