@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
 *{
+    color: #1C1C1C;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
@@ -11,6 +12,7 @@
 }
 
 .inputpassword>input{
+    margin: 5px 0 16px 0;
     height: 48px;
     border: 1px solid #E5E5EA;
     padding: 14px;
@@ -26,12 +28,20 @@
     background-color: #f0f8ff; 
 }
 
-.accessbutton{
+.inputpassword>button{
     color: #FEFEFE;
     height: 48px;
+    cursor: pointer;
     border: none;
     padding: 8px 16px;
     max-width: 360px;
+    transition: 0.1s;
     border-radius: 8px;
     background-color: #070707;
+}
+
+.inputpassword>button:active {
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: #440986;
 }
