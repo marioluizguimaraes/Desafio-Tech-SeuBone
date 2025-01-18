@@ -2,7 +2,7 @@ import './LoginForm.css'
 import LogoFanation from '../../assets/LogoFanation.png'
 import InputPass from '../InputPass/InputPass'
 
-export default function LoginForm(){
+function LoginForm(){
     return(
         <div className="login">
             <img src={LogoFanation} alt="logotipo fanation"/>
@@ -12,3 +12,5 @@ export default function LoginForm(){
         </div>
     )
 }
+
+export default LoginForm
