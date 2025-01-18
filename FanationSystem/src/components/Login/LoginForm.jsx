@@ -9,7 +9,6 @@ export default function LoginForm(){
             <h2>Bem-vindo ao Fanation</h2>
             <p>Acesse a sua conta para iniciar</p>  
             <InputPass/>
-
         </div>
     )
 }

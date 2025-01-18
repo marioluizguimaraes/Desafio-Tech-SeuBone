@@ -2,6 +2,8 @@
 
 *{
     color: #1C1C1C;
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
@@ -9,6 +11,14 @@
 .inputpassword{
     display: flex;
     flex-direction: column;
+
+    width: 100%; 
+    max-width: 360px;
+}
+
+.inputpassword>label{
+    font-size: 14px;
+    line-height: 21px;
 }
 
 .inputpassword>input{
@@ -17,9 +27,7 @@
     border: 1px solid #E5E5EA;
     padding: 14px;
     font-size: 14px;
-    max-width: 360px;
-    border-radius: 8px;
-    
+    border-radius: 8px;    
 }
 
 .inputpassword>input[type="password"]:focus {
@@ -34,7 +42,6 @@
     cursor: pointer;
     border: none;
     padding: 8px 16px;
-    max-width: 360px;
     transition: 0.1s;
     border-radius: 8px;
     background-color: #070707;
@@ -45,3 +52,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     background-color: #440986;
 }
+
+
+
