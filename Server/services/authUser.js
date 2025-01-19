@@ -31,8 +31,9 @@ const authUser = (app) => {
             
             // definindo Token
             const secret = process.env.SECRET
-            const token = jwt.sign({id: user._id},secret, {expiresIn: '1h'})
-            res.status(200).json({emailUser,token})
+            const token = jwt.sign({id: user._id},secret, {expiresIn: '2m'})
+            console.log(`O usuário ${emailUser} fez login`)
+            res.status(200).json({emailUser, token})
             
         } catch{
             console.error('Erro ao autenticar o usuário:', error.message)
