@@ -16,4 +16,4 @@ const conectDB = (app, port)=>{
   }).catch((err) => console.log(err))
 }
 
-module.exports = conectDB;
+module.exports = conectDB

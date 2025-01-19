@@ -1,11 +1,12 @@
 require('dotenv').config()
-
-const express = require('express')
-const conectBd = require('../Server/config/conectBd')
-const bcrypt = require('bcrypt')
 const User = require('./models/User')
-
+const bcrypt = require('bcrypt')
+const express = require('express')
+const jwt = require('jsonwebtoken')
+const conectBd = require('../Server/config/conectBd')
+const registerUser = require('./services/registerUser')
 const app = express()
+
 app.use(express.json()) // Configura leitura JSON
 
 // Testando resposta básica
@@ -16,41 +17,40 @@ app.get('/', (req, res) => {
 // Conectando ao banco de dados
 conectBd(app, 3000)
 
-// Endpoint para registro de usuários
-app.post('/auth/register', async (req, res) => {
-  const { password, email } = req.body
+// Registra usuário
+registerUser(app)
 
-  // Validação de campos
-  if (!password) {
-    return res.status(422).json({ msg: 'Preencha todos os campos!' })
-  }
+// Autenticação de login
+app.post("/auth/login", async (req, res) =>{
+    
+    const {email, password} = req.body
 
-  try {
-    // Verificação de senhas ja cadastradas
-    const existingUser = await User.findOne({ email: email })
-    if (existingUser) {
-        console.log(`Usuário de acesso já cadastrado!`)
-        return res.status(422).json({ msg: 'Usuário de acesso já cadastrado!' })
+    if (!password  || !email) {
+        return res.status(422).json({ msg: 'Preencha todos os campos!' })
     }
 
-    // Criação de Hash na senha
-    const salt = await bcrypt.genSalt(8)
-    const passwordHash = await bcrypt.hash(password, salt)
+    try {
+        // Verificação de usuário ja cadastradas
+        const user = await User.findOne({ email: email })
+        if (!user) {
+            console.log(`Usuário não foi encontrado!`)
+            return res.status(404).json({ msg: 'Usuário não foi encontrado!' })
+        }
 
-    // Criação do usuário
-    const user = new User({
-        email: email, 
-        password: passwordHash 
-    })
-    
-    await user.save()
-    console.log('Usuário cadastrado com sucesso!')
-    res.status(201).json({ msg: 'Usuário cadastrado com sucesso!' })
+        // checagem de senha
+        const checkPas = await bcrypt.compare(password, user.password)
+        if (!checkPas){
+            console.log(`Senha incorreta!`)
+            return res.status(422).json({ msg: 'Senha incorreta!' })            
+        }
+        // definindo Token
+        const secret = process.env.SECRET
+        const token = jwt.sign({id: user._id},secret)
+        res.status(200).json({msg: "Autenticação confirmada!", token})
 
-  } catch (error) {
-    console.error('Erro ao cadastrar usuário:', error.message)
-    res.status(500).json({ msg: 'Erro interno do servidor' })
-  }
-});
+    } catch{
 
-console.log('Servidor configurado.')
+    }
+})
+
+console.log('Servidor configurado!')
