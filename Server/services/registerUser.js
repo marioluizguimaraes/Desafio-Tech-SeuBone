@@ -13,12 +13,23 @@ const registerUser = (app) =>{
         }
     
         try {
+        
         // Verificação de senhas ja cadastradas
         const existingUser = await User.findOne({ email: email })
         if (existingUser) {
             console.log(`Usuário de acesso já cadastrado!`)
             return res.status(422).json({ msg: 'Usuário de acesso já cadastrado!' })
         }
+
+         // Verificação de senha já cadastrada
+         const users = await User.find(); // Obtém todos os usuários
+         for (const user of users) {
+             const isSamePassword = await bcrypt.compare(password, user.password);
+             if (isSamePassword) {
+                 console.log('Senha já utilizada por outro usuário!');
+                 return res.status(422).json({ msg: 'Senha já utilizada por outro usuário!' });
+             }
+         }
     
         // Criação de Hash na senha
         const salt = await bcrypt.genSalt(8)

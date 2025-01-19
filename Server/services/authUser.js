@@ -4,33 +4,35 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const authUser = (app) => {
-// Autenticação de login
+    // Autenticação de login
     app.post("/auth/login", async (req, res) =>{
         
-        const {email, password} = req.body
+        const {password} = req.body
 
-        if (!password  || !email) {
+        if (!password) {
             return res.status(422).json({msg: 'Preencha todos os campos!'})
         }
 
         try {
-            // Verificação de usuário ja cadastradas
-            const user = await User.findOne({email: email})
-            if (!user) {
-                console.log(`Usuário não foi encontrado!`)
-                return res.status(404).json({msg: 'Usuário não foi encontrado!'})
+            // Verificação de usuários cadastrados
+            const users = await User.find() // Obtém todos os usuários
+            let user = null
+
+            // Verifica a senha para cada usuário
+            for (const u of users) {
+                const checkPas = await bcrypt.compare(password, u.password)
+                if (checkPas) {
+                    user = u
+                    break
+                }
             }
 
-            // checagem de senha
-            const checkPas = await bcrypt.compare(password, user.password)
-            if (!checkPas){
-                console.log(`Senha incorreta!`)
-                return res.status(422).json({msg: 'Senha incorreta!'})            
-            }
+            const emailUser = user.email
+            
             // definindo Token
             const secret = process.env.SECRET
             const token = jwt.sign({id: user._id},secret, {expiresIn: '1h'})
-            res.status(200).json({token})
+            res.status(200).json({emailUser,token})
             
         } catch{
             console.error('Erro ao autenticar o usuário:', error.message)

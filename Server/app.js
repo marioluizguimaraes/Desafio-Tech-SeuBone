@@ -22,3 +22,4 @@ registerUser(app)
 authUser(app)
 
 console.log('Servidor configurado!')
+
