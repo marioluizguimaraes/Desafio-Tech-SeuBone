@@ -1,57 +1,56 @@
 require('dotenv').config()
+
 const express = require('express')
-const mongoose = require('mongoose')
+const conectBd = require('../Server/config/conectBd')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const conectBd = require('../Server/config/conectBd') 
 const User = require('./models/User')
 
 const app = express()
-app.use(express.json()) //Configura leitura JSON para o express
+app.use(express.json()) // Configura leitura JSON
 
-// Testando res
+// Testando resposta básica
 app.get('/', (req, res) => {
-    res.status(200).json({msg: 'Testando'})
-})
-// Conectando o bando de dados
+  res.status(200).json({ msg: 'Testando' })
+});
+
+// Conectando ao banco de dados
 conectBd(app, 3000)
 
-// Testando req
-app.post('/auth/register', async(req, res) => {
-    const{password} = req.body
-    
-    if(!password){
-        console.log('Preencha todos os campus')
-        return res.status(422).json({msg: 'Preencha todos os campus'})
+// Endpoint para registro de usuários
+app.post('/auth/register', async (req, res) => {
+  const { password, email } = req.body
+
+  // Validação de campos
+  if (!password) {
+    return res.status(422).json({ msg: 'Preencha todos os campos!' })
+  }
+
+  try {
+    // Verificação de senhas ja cadastradas
+    const existingUser = await User.findOne({ email: email })
+    if (existingUser) {
+        console.log(`Usuário de acesso já cadastrado!`)
+        return res.status(422).json({ msg: 'Usuário de acesso já cadastrado!' })
     }
 
-    console.log(`Dados recebidos com sucesso`)
-    res.status(200).json({msg: `Dados recebidos com sucesso`})
-    
-    const existingPass = await User.findOne({ password: password});
-       
-    if (existingPass) {
-        return res.status(422).json({ msg: 'Senha de acesso já cadastrada' });
-    }
-
+    // Criação de Hash na senha
     const salt = await bcrypt.genSalt(8)
     const passwordHash = await bcrypt.hash(password, salt)
 
+    // Criação do usuário
     const user = new User({
-        password
+        email: email, 
+        password: passwordHash 
     })
-
-    try {
-    await user.save()
-        res.status(200).json({msg: `Senha cadastrada com sucesso`})
-        
-    } catch (error) {
-        res.status(500).json({msg: 'Erro no servidor'})
-        console.log('Erro no servidor')
-    }
     
-})
+    await user.save()
+    console.log('Usuário cadastrado com sucesso!')
+    res.status(201).json({ msg: 'Usuário cadastrado com sucesso!' })
 
+  } catch (error) {
+    console.error('Erro ao cadastrar usuário:', error.message)
+    res.status(500).json({ msg: 'Erro interno do servidor' })
+  }
+});
 
-console.log('fim')
-
+console.log('Servidor configurado.')
