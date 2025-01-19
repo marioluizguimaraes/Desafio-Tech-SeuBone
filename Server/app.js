@@ -1,36 +1,57 @@
-require('dotenv').config();
-
+require('dotenv').config()
 const express = require('express')
 const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const conectBd = require('../Server/config/conectBd') 
+const User = require('./models/User')
 
 const app = express()
+app.use(express.json()) //Configura leitura JSON para o express
 
-//Configurando leitura do express para JSON
-app.use(express.json());
-
-// Teste de requisição
+// Testando res
 app.get('/', (req, res) => {
-    res.status(200).json({msg: 'foi'})
+    res.status(200).json({msg: 'Testando'})
 })
+// Conectando o bando de dados
+conectBd(app, 3000)
 
-// Registrando um usuário // async é um função acincrona
+// Testando req
 app.post('/auth/register', async(req, res) => {
     const{password} = req.body
-
+    
     if(!password){
-        res.status(422).json({msg: 'A senha é obrigatório!'})
+        console.log('Preencha todos os campus')
+        return res.status(422).json({msg: 'Preencha todos os campus'})
     }
+
+    console.log(`Dados recebidos com sucesso`)
+    res.status(200).json({msg: `Dados recebidos com sucesso`})
+    
+    const existingPass = await User.findOne({ password: password});
+       
+    if (existingPass) {
+        return res.status(422).json({ msg: 'Senha de acesso já cadastrada' });
+    }
+
+    const salt = await bcrypt.genSalt(8)
+    const passwordHash = await bcrypt.hash(password, salt)
+
+    const user = new User({
+        password
+    })
+
+    try {
+    await user.save()
+        res.status(200).json({msg: `Senha cadastrada com sucesso`})
+        
+    } catch (error) {
+        res.status(500).json({msg: 'Erro no servidor'})
+        console.log('Erro no servidor')
+    }
+    
 })
 
 
-//credenciais de acesso ao bando mongodb
-const dbUser = process.env.DB_USER
-const dbPass = process.env.DB_PASS
-
-mongoose.connect(`mongodb+srv://${dbUser}:${dbPass}@cluster0.342q0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`).then(() => {
-    app.listen(3000)
-    console.log('Conectou')
-}).catch((err) => console.log(err))
+console.log('fim')
 

@@ -1,0 +1,19 @@
+require('dotenv').config()
+
+const mongoose = require('mongoose')
+
+const conectDB = (app, port)=>{
+  
+  //credenciais de acesso ao bando mongodb
+  const dbUser = process.env.DB_USER
+  const dbPass = process.env.DB_PASS
+  const uri = `mongodb+srv://${dbUser}:${dbPass}@cluster0.342q0.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`
+  
+  // Conectando o Banco de dados
+  mongoose.connect(uri).then(() => {
+      app.listen(port)
+      console.log('Banco de Dados Conectado')
+  }).catch((err) => console.log(err))
+}
+
+module.exports = conectDB;
