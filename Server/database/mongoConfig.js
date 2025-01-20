@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const mongoose = require('mongoose')
 
-const conectDB = (app, port)=>{
+const conectBd = (app, port)=>{
   
   //credenciais de acesso ao bando mongodb
   const dbUser = process.env.DB_USER
@@ -13,7 +13,8 @@ const conectDB = (app, port)=>{
   mongoose.connect(uri).then(() => {
       app.listen(port)
       console.log('Banco de Dados Conectado')
+      console.log(`Sevidor conectado na porta ${port}`)
   }).catch((err) => console.log(err))
 }
 
-module.exports = conectDB
+module.exports = conectBd

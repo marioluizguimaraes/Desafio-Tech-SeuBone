@@ -1,11 +1,10 @@
 require('dotenv').config()
 const express = require('express')
-const conectBd = require('../Server/config/conectBd')
-const registerUser = require('./services/registerUser')
+const conectBd = require('./database/mongoConfig')
+const registerUser = require('./controllers/registerUser')
 const app = express()
-const authUser= require('./services/authUser')
+const authUser= require('./controllers/authUser')
 const User = require('./models/User')
-const { verify } = require('jsonwebtoken')
 const verifyToken = require('./middleware/verifyToken')
 
 app.use(express.json()) // Configura leitura JSON

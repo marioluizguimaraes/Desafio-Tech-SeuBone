@@ -24,10 +24,10 @@ const verifyToken = (req, res, next) => {
         jwt.verify(token, secret)
 
         next()
-        
+
     } catch (error) {
         console.error('Erro ao verificar token:', error.message)
-        res.status(500).json({ msg: 'Token inválido!' })
+        res.status(501).json({ msg: 'Token inválido!' })
     }
 }
 
