@@ -39,7 +39,4 @@ app.get('/users/:id', verifyToken ,async (req, res) =>{
     
 })
 
-
-
 console.log('Servidor configurado!')
-
