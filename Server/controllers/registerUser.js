@@ -22,12 +22,12 @@ const registerUser = (app) =>{
         }
 
          // Verificação de senha já cadastrada
-         const users = await User.find(); // Obtém todos os usuários
+         const users = await User.find() // Obtém todos os usuários
          for (const user of users) {
-             const isSamePassword = await bcrypt.compare(password, user.password);
+             const isSamePassword = await bcrypt.compare(password, user.password)
              if (isSamePassword) {
-                 console.log('Senha já utilizada por outro usuário!');
-                 return res.status(422).json({ msg: 'Senha já utilizada por outro usuário!' });
+                 console.log('Senha já utilizada por outro usuário!')
+                 return res.status(422).json({ msg: 'Senha já utilizada por outro usuário!' })
              }
          }
     
