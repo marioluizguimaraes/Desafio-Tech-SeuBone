@@ -34,11 +34,9 @@ app.get('/users/:id', verifyToken ,async (req, res) =>{
         return res.status(404).json({ msg: `Usuário não encontrado!`})
     }
     
-    console.log(`Usuário ncontrado!`)
+    console.log(`Usuário encontrado!`)
     return res.status(200).json({user})
     
 })
-
-
 
 console.log('Servidor configurado!')
