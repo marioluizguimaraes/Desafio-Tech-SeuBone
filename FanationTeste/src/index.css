@@ -1,4 +1,4 @@
-@import url(components/Global.css);
+@import url(components/GlobalStyle.css);
 
 body{
     background-color: var(--white3);

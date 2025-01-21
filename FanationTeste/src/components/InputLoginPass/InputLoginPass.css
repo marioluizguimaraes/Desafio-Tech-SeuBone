@@ -1,8 +1,8 @@
-@import url(../Global.css);
+@import url(../GlobalStyle.css);
 
 .inputpassword{
-    margin-top: 20px;
     display: flex;
+    margin-top: 20px;
     flex-direction: column;
 
     width: 100%; 
