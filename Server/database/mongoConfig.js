@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const mongoose = require('mongoose')
-
+// mudar para função normal
 const conectBd = (app, port)=>{
   
   //credenciais de acesso ao bando mongodb
