@@ -5,7 +5,7 @@ const AccessButton = ({loading}) => {
 
     return(
         <>
-            <button className='Button' type='submit'> {{loading} ? 'Carregando...' : 'Acessar'}</button>
+            <button className='Button' type='submit'> {loading ? 'Carregando...' : 'Acessar'}</button>
         </>
     )
 }

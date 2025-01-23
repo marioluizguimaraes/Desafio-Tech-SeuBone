@@ -14,11 +14,11 @@ const authUser = (app) => {
         }
 
         try {
-            // Verificação de usuários cadastrados
-            const users = await User.find() // Obtém todos os usuários
+            
+            const users = await User.find()
             let user = null
 
-            // Verifica a senha para cada usuário
+            // Verifica o password para cada usuário
             for (const u of users) {
                 const checkPas = await bcrypt.compare(password, u.password)
                 if (checkPas) {
@@ -29,6 +29,7 @@ const authUser = (app) => {
 
             const emailUser = user.email
             const idUser = user._id            
+            
             // definindo Token
             const secret = process.env.SECRET
             const token = jwt.sign({id: user._id},secret, {expiresIn: '2m'})
