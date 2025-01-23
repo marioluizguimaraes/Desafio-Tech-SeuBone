@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import InputPass from '../InputPass/InputPass'
 import AccessButton from '../AccessButton/AccessButton'
+import Logo from '../../assets/img/LogoFanation.png'
 import './FormsAccess.css'
 
 const FormsAccess = () => {
@@ -21,13 +22,17 @@ const FormsAccess = () => {
                 alert('Senha inválida');
                 return;
             }
-
             //chamada para requisição aqui em baixo
 
         }
 
     return(
         <form onSubmit={handleVerification} className='FormsAccess'>
+            <div className='headerForms'>
+                <img src={Logo} alt="logotipo fanation"/>
+                <h2>Bem-vindo ao Fanation</h2>
+                <p>Acesse a sua conta para iniciar</p>
+            </div>
             <label For="passAccess">Inserir senha</label>
             <InputPass 
                 id={'passAccess'}

@@ -1,11 +1,11 @@
 import React from 'react';
 import './AccessButton.css'
 
-const AccessButton = () => {
+const AccessButton = ({loading}) => {
 
     return(
         <>
-            <button className='Button' type='submit'>Acessar</button>
+            <button className='Button' type='submit'> {{loading} ? 'Carregando...' : 'Acessar'}</button>
         </>
     )
 }

@@ -1,4 +1,4 @@
-@import url(../../index.css);
+@import url(../../Styles/index.css);
 
 .FormsAccess{
     width: 100%; 
@@ -6,4 +6,20 @@
     max-width: 360px;
     margin-top: 20px;
     flex-direction: column;
+}
+.FormsAccess .headerForms{
+    text-align: center;
+    margin-bottom:16px;
+}
+.FormsAccess .headerForms img{
+    width: 152px;
+}
+.FormsAccess .headerForms h2{
+    color: var(--purple1);
+    margin: 16px 0 0px 0;
+    font-weight: 400;
+}
+.FormsAccess label{
+    font-size: 14px;
+    line-height: 21px;
 }
