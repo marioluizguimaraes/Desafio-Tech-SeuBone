@@ -1,2 +1,18 @@
 @import url(../../index.css);
 
+.InputPass{
+    margin: 5px 0 16px 0;
+    height: 48px;
+    border: 1px solid var(--white4);
+    padding: 14px;
+    font-size: 14px;
+    border-radius: 8px;   
+}
+
+.InputPass:focus{
+    outline: none;
+    border-color: var(--purple1); 
+    background-color: var(--white2);
+}
+
+

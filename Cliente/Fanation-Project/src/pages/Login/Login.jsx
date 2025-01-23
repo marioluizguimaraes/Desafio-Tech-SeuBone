@@ -1,9 +1,10 @@
-import AccessButton from "../../components/AccessButton/AccessButton"
+import FormsAccess from "../../components/FormsAccess/FormsAccess"
+
 
 function Login(){
     return(
         <>
-         <AccessButton/>
+            <FormsAccess/>
         </>
     )
 }

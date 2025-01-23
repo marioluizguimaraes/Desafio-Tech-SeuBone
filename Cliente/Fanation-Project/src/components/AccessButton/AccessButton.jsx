@@ -3,10 +3,9 @@ import './AccessButton.css'
 
 const AccessButton = () => {
 
-
     return(
         <>
-            <button className='Button' onSubmit={handleVerification} type='submit'>Acessar</button>
+            <button className='Button' type='submit'>Acessar</button>
         </>
     )
 }

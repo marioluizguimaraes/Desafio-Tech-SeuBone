@@ -1,12 +1,19 @@
-import React from 'react';
-import './AccessButton.css'
+import React from 'react'
+import './InputPass.css'
 
-const InputPass = () => {
 
+const InputPass = ({id, value, onChange}) => {
 
     return(
         <>
-            <button className='Button' onSubmit={handleVerification} type='submit'>Acessar</button>
+            <input className={"InputPass" }
+            type="password" 
+            name="passwordAccess" 
+            id={id}
+            value={value}
+            onChange={onChange}
+            placeholder='Digite sua senha'
+            />
         </>
     )
 }

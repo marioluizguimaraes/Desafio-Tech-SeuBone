@@ -1,0 +1,9 @@
+@import url(../../index.css);
+
+.FormsAccess{
+    width: 100%; 
+    display: flex;
+    max-width: 360px;
+    margin-top: 20px;
+    flex-direction: column;
+}
