@@ -1,14 +1,22 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+:root{
+    --black1: #000000;
+    --black2: #212121;
+    --black3: #070707;
+    --white1: #ffffff;
+    --white2: #f0f8ff;
+    --white3: #FEFEFE;
+    --white4: #E5E5EA;
+    --purple1: #9A0FF1;
+    --purple2: #440986;
+    --gray1: #D1D1D6;
+}
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    color: var(--black2);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
