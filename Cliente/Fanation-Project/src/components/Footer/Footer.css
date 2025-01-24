@@ -1,0 +1,18 @@
+@import url(../../Styles/index.css);
+
+footer {
+    display: flex;
+    justify-content: center; 
+}
+
+footer>div{
+    gap: 6px;
+    display: flex;
+    position: absolute;
+    bottom: 43px;    
+}
+
+footer div p {
+    color: var(--gray1);
+    font-weight: 700;
+}

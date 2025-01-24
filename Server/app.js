@@ -8,7 +8,8 @@ const authUser= require('./controllers/authUser')
 const User = require('./models/User')
 const verifyToken = require('./middleware/verifyToken')
 
-app.use(express.json()) // Configura leitura JSON
+// Configura leitura JSON
+app.use(express.json()) 
 
 app.use(cors({
   origin: 'http://localhost:5173' // Apenas permite requisições dessa origem

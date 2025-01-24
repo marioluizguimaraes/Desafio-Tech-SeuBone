@@ -2,34 +2,32 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken')
 
 const verifyToken = (req, res, next) => {
-    
-        const authHeader = req.headers['authorization']
-        
-        // Verifica se o cabeçalho está presente
-        if (!authHeader) {
-            return res.status(401).json({ msg: 'Acesso negado! Token não fornecido.' })
-        }
+    const authHeader = req.headers['authorization']
 
-        // Extrai o token do cabeçalho
-        const token = authHeader.split(' ')[1]
+    // Verificaçãp do cabeçalho
+    if (!authHeader) {
+        return res.status(401).json({ msg: 'Acesso negado! Token não fornecido.' })
+    }
 
-        if (!token) {
-            return res.status(401).json({ msg: 'Acesso negado! Token inválido ou ausente.' })
-        }
+    // Extrai o token do cabeçalho
+    const token = authHeader.split(' ')[1]
 
-        try {
+    if (!token) {
+        return res.status(401).json({ msg: 'Acesso negado! Token inválido ou ausente.' })
+    }
 
-        // Verifica o token
+    try {
+        // Verificação do token
         const secret = process.env.SECRET
         jwt.verify(token, secret)
-        res.status(200).json({ msg: 'Token válido!' })
-        console.log('foi')
+        console.log('Token válido!')
+
         next()
 
     } catch (error) {
         console.error('Erro ao verificar token:', error.message)
-        res.status(501).json({ msg: 'Token inválido!' })
+        return res.status(501).json({ msg: 'Token inválido!' })
     }
 }
 
-module.exports = verifyToken;
+module.exports = verifyToken

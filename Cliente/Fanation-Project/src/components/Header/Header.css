@@ -1,2 +1,13 @@
 @import url(../../Styles/index.css);
 
+header{
+    height: 72px ;
+    display: flex;
+    padding: 32px ;
+    align-items: center;
+    background-color: var(--purple2);
+}
+
+.logo{
+    width: 113px;
+}

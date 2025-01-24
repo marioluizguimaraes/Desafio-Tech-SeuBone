@@ -34,9 +34,7 @@ function FormsAccess() {
         }
 
         const data = await UserAccess(url, passwordValue)
-        const id = data.idUser
-        console.log(id)
-        const verify = verifyTokenAPI('http://localhost:3000/users',id , localStorage.getItem('token'))
+        const verify = verifyTokenAPI('http://localhost:3000/users', localStorage.getItem('idUser') , localStorage.getItem('token'))
         setLoading(false)
         if (verify) {
             console.log('Token é válido');

@@ -14,7 +14,7 @@ const conectBd = (app, port)=>{
       app.listen(port)
       console.log('Banco de Dados Conectado')
       console.log(`Sevidor conectado na porta ${port}`)
-  }).catch((err) => console.log(err))
+  }).catch((error) => console.log(error))
 }
 
 module.exports = conectBd

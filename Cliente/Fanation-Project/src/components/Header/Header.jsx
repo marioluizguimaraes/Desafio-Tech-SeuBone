@@ -1,13 +1,11 @@
 import React from 'react'
 import './Header.css'
-
+import LogoBranca from '../../assets/img/LogoBranca.png'
 
 const Header = ()=>{
     return(
        <header>
-            <h1>
-                <img src="" alt="" />           
-            </h1>
+            <img className='logo' src={LogoBranca} alt="Logo Fanation Branca" />           
        </header>
     )
 }
