@@ -10,13 +10,13 @@ const verifyTokenAPI = async (url, id, token) => {
         })
 
         if (response.status === 200) {
-            return true // Token é válido
+            return true
         } else {
-            return false // Token não é válido
+            return false
         }
     } catch (error) {
         console.error('Erro ao verificar token:', error)
-        return false // Caso haja erro (token inválido ou expirado)
+        return false 
     }
 }
 

@@ -1,0 +1,27 @@
+@import url(../../Styles/index.css);
+
+
+.bottonLogout{
+    color: var(--white3);
+    height: 48px;
+    cursor: pointer;
+    margin-top: 20px;
+    border: none;
+    padding: 8px 16px;
+    transition: 0.1s;
+    border-radius: 8px;
+    background-color: var( --black3);
+}
+
+.bottonLogout:active{
+    transform: scale(0.97);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    background-color: var(--purple2);
+}
+
+.DashboardContainer{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
