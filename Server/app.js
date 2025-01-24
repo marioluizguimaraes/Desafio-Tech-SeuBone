@@ -3,11 +3,16 @@ const express = require('express')
 const conectBd = require('./database/mongoConfig')
 const registerUser = require('./controllers/registerUser')
 const app = express()
+const cors = require('cors')
 const authUser= require('./controllers/authUser')
 const User = require('./models/User')
 const verifyToken = require('./middleware/verifyToken')
 
 app.use(express.json()) // Configura leitura JSON
+
+app.use(cors({
+  origin: 'http://localhost:5173' // Apenas permite requisições dessa origem
+}))
 
 // Testando resposta básica
 app.get('/', (req, res) => {

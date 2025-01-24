@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
 const authUser = (app) => {
+
     // Autenticação de login
     app.post("/auth/login", async (req, res) =>{
         
@@ -27,12 +28,17 @@ const authUser = (app) => {
                 }
             }
 
+            // Verifica se um usuário foi encontrado
+            if (!user) {
+                return res.status(404).json({ msg: 'Usuário não encontrado ou senha inválida.' })
+            }
+
             const emailUser = user.email
             const idUser = user._id            
             
             // definindo Token
             const secret = process.env.SECRET
-            const token = jwt.sign({id: user._id},secret, {expiresIn: '2m'})
+            const token = jwt.sign({id: user._id},secret, {expiresIn: '24h'})
             console.log(`O usuário ${emailUser} fez login`)
             res.status(200).json({emailUser, idUser, token})
             

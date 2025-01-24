@@ -1,7 +1,0 @@
-import React from 'react';
-
-const Dashboard = () => {
-  return <h1>Bem-vindo à Dashboard!</h1>;
-};
-
-export default Dashboard;

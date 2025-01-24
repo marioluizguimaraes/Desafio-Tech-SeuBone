@@ -22,7 +22,8 @@ const verifyToken = (req, res, next) => {
         // Verifica o token
         const secret = process.env.SECRET
         jwt.verify(token, secret)
-
+        res.status(200).json({ msg: 'Token válido!' })
+        console.log('foi')
         next()
 
     } catch (error) {
